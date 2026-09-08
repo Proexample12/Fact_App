@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ni.edu.uam.facturacion.controller.CargoController">
+    <top>
+        <Label text="Cargos">
+            <padding>
+                <Insets top="16" right="16" bottom="16" left="16"/>
+            </padding>
+        </Label>
+    </top>
+    <center>
+        <TableView prefHeight="400" prefWidth="700">
+            <columns>
+                <TableColumn text="ID" prefWidth="120"/>
+                <TableColumn text="Nombre" prefWidth="280"/>
+                <TableColumn text="Descripcion" prefWidth="300"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
