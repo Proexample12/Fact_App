@@ -1,21 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ni.edu.uam.facturacion.controller.ProductoController">
     <top>
-        <Label text="Productos">
+        <GridPane hgap="10" vgap="10">
             <padding>
                 <Insets top="16" right="16" bottom="16" left="16"/>
             </padding>
-        </Label>
+            <columnConstraints>
+                <ColumnConstraints minWidth="110"/>
+                <ColumnConstraints prefWidth="260" hgrow="ALWAYS"/>
+                <ColumnConstraints minWidth="110"/>
+                <ColumnConstraints prefWidth="260" hgrow="ALWAYS"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+
+            <Label text="Código" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtCodigo" promptText="Código único" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Nombre" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombre" promptText="Nombre" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Categoría" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cmbCategoria" maxWidth="Infinity" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Activo" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="chkActivo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Precio" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtPrecio" promptText="Precio de venta" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+            <Label text="Existencia" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtExistencia" promptText="Existencia" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+            <Label text="Imagen" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <ImageView fx:id="imgProducto" fitWidth="160" fitHeight="120" preserveRatio="true"
+                       GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.rowSpan="2"/>
+        </GridPane>
     </top>
     <center>
-        <TableView prefHeight="400" prefWidth="700"/>
+        <TableView fx:id="tblProductos" prefHeight="400" prefWidth="700">
+            <columns>
+                <TableColumn fx:id="colCodigo" text="Código" prefWidth="120"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="190"/>
+                <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="150"/>
+                <TableColumn fx:id="colPrecio" text="Precio" prefWidth="110"/>
+                <TableColumn fx:id="colExistencia" text="Existencia" prefWidth="110"/>
+                <TableColumn fx:id="colActivo" text="Activo" prefWidth="100"/>
+            </columns>
+        </TableView>
     </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="12" right="16" bottom="16" left="16"/>
+            </padding>
+            <Button fx:id="btnImagen" text="Seleccionar imagen" onAction="#seleccionarImagen"/>
+            <Button fx:id="btnGuardar" text="Guardar" onAction="#guardar"/>
+            <Button fx:id="btnCerrar" text="Cerrar" onAction="#cerrar"/>
+        </HBox>
+    </bottom>
 </BorderPane>

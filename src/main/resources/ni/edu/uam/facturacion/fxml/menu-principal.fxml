@@ -3,6 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -10,17 +14,34 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ni.edu.uam.facturacion.controller.MenuPrincipalController">
     <top>
-        <Label text="Sistema de Facturacion" BorderPane.alignment="CENTER">
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu text="Archivo">
+                        <items>
+                            <MenuItem fx:id="mnuSalir" text="Salir" onAction="#salir"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Catálogos">
+                        <items>
+                            <MenuItem fx:id="mnuProductos" text="Productos" onAction="#abrirProductos"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <ToolBar>
+                <items>
+                    <Button fx:id="btnProductos" text="Productos" onAction="#abrirProductos"/>
+                    <Button fx:id="btnSalir" text="Salir" onAction="#salir"/>
+                </items>
+            </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <Label text="Sistema de facturación" BorderPane.alignment="CENTER">
             <padding>
                 <Insets top="18" right="18" bottom="18" left="18"/>
             </padding>
         </Label>
-    </top>
-    <center>
-        <VBox alignment="CENTER" spacing="12">
-            <Button text="Productos" prefWidth="180"/>
-            <Button text="Empleados" prefWidth="180"/>
-            <Button text="Facturas" prefWidth="180"/>
-        </VBox>
     </center>
 </BorderPane>
