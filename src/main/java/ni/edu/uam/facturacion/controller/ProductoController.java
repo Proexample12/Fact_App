@@ -1,7 +1,5 @@
 package ni.edu.uam.facturacion.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -17,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ni.edu.uam.facturacion.model.Categoria;
 import ni.edu.uam.facturacion.model.Producto;
+import ni.edu.uam.facturacion.util.DatosApp;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -37,16 +36,11 @@ public class ProductoController {
     @FXML private TableColumn<Producto, Integer> colExistencia;
     @FXML private TableColumn<Producto, Boolean> colActivo;
 
-    private final ObservableList<Producto> productos =
-            FXCollections.observableArrayList();
     private String rutaImagen;
 
     @FXML
     private void initialize() {
-        cmbCategoria.setItems(FXCollections.observableArrayList(
-                new Categoria(1, "Alimentos", true),
-                new Categoria(2, "Bebidas", true),
-                new Categoria(3, "Limpieza", true)));
+        cmbCategoria.setItems(DatosApp.categorias);
 
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -55,7 +49,7 @@ public class ProductoController {
         colExistencia.setCellValueFactory(new PropertyValueFactory<>("existencia"));
         colActivo.setCellValueFactory(new PropertyValueFactory<>("activo"));
 
-        tblProductos.setItems(productos);
+        tblProductos.setItems(DatosApp.productos);
         chkActivo.setSelected(true);
     }
 
@@ -89,9 +83,10 @@ public class ProductoController {
                 return;
             }
 
-            productos.add(new Producto(null, txtCodigo.getText().trim(),
-                    txtNombre.getText().trim(), cmbCategoria.getValue(), precio,
-                    existencia, rutaImagen, chkActivo.isSelected()));
+            DatosApp.productos.add(new Producto(DatosApp.siguienteProductoId(),
+                    txtCodigo.getText().trim(), txtNombre.getText().trim(),
+                    cmbCategoria.getValue(), precio, existencia, rutaImagen,
+                    chkActivo.isSelected()));
             mensaje(Alert.AlertType.INFORMATION, "Producto agregado correctamente.");
             limpiar();
         } catch (NumberFormatException e) {

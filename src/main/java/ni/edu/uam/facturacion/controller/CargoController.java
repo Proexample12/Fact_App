@@ -1,7 +1,5 @@
 package ni.edu.uam.facturacion.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -12,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ni.edu.uam.facturacion.model.Cargo;
+import ni.edu.uam.facturacion.util.DatosApp;
 
 public class CargoController {
     @FXML private TextField txtNombre;
@@ -21,17 +20,13 @@ public class CargoController {
     @FXML private TableColumn<Cargo, String> colNombre;
     @FXML private TableColumn<Cargo, String> colDescripcion;
 
-    private final ObservableList<Cargo> cargos =
-            FXCollections.observableArrayList();
-    private int siguienteId = 1;
-
     @FXML
     private void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
 
-        tblCargos.setItems(cargos);
+        tblCargos.setItems(DatosApp.cargos);
     }
 
     @FXML
@@ -44,14 +39,14 @@ public class CargoController {
             return;
         }
 
-        boolean existe = cargos.stream()
+        boolean existe = DatosApp.cargos.stream()
                 .anyMatch(cargo -> cargo.getNombre().equalsIgnoreCase(nombre));
         if (existe) {
             mensaje(Alert.AlertType.WARNING, "Ya existe un cargo con ese nombre.");
             return;
         }
 
-        cargos.add(new Cargo(siguienteId++, nombre, descripcion));
+        DatosApp.cargos.add(new Cargo(DatosApp.siguienteCargoId(), nombre, descripcion));
         mensaje(Alert.AlertType.INFORMATION, "Cargo agregado correctamente.");
         limpiar();
     }

@@ -1,7 +1,5 @@
 package ni.edu.uam.facturacion.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -12,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ni.edu.uam.facturacion.model.Categoria;
+import ni.edu.uam.facturacion.util.DatosApp;
 
 public class CategoriaController {
     @FXML private TextField txtNombre;
@@ -21,17 +20,13 @@ public class CategoriaController {
     @FXML private TableColumn<Categoria, String> colNombre;
     @FXML private TableColumn<Categoria, Boolean> colActivo;
 
-    private final ObservableList<Categoria> categorias =
-            FXCollections.observableArrayList();
-    private int siguienteId = 1;
-
     @FXML
     private void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colActivo.setCellValueFactory(new PropertyValueFactory<>("activo"));
 
-        tblCategorias.setItems(categorias);
+        tblCategorias.setItems(DatosApp.categorias);
         chkActivo.setSelected(true);
     }
 
@@ -43,14 +38,15 @@ public class CategoriaController {
             return;
         }
 
-        boolean existe = categorias.stream()
+        boolean existe = DatosApp.categorias.stream()
                 .anyMatch(categoria -> categoria.getNombre().equalsIgnoreCase(nombre));
         if (existe) {
             mensaje(Alert.AlertType.WARNING, "Ya existe una categoría con ese nombre.");
             return;
         }
 
-        categorias.add(new Categoria(siguienteId++, nombre, chkActivo.isSelected()));
+        DatosApp.categorias.add(new Categoria(DatosApp.siguienteCategoriaId(),
+                nombre, chkActivo.isSelected()));
         mensaje(Alert.AlertType.INFORMATION, "Categoría agregada correctamente.");
         limpiar();
     }
