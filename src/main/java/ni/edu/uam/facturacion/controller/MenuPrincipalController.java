@@ -10,6 +10,30 @@ import java.io.IOException;
 
 public class MenuPrincipalController {
     @FXML
+    private void abrirCategorias() {
+        try {
+            SceneManager.abrirVentana(
+                    "/ni/edu/uam/facturacion/fxml/categoria-view.fxml",
+                    "Gestión de categorías");
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,
+                    "No fue posible abrir Categorías.").showAndWait();
+        }
+    }
+
+    @FXML
+    private void abrirCargos() {
+        try {
+            SceneManager.abrirVentana(
+                    "/ni/edu/uam/facturacion/fxml/cargo-view.fxml",
+                    "Gestión de cargos");
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,
+                    "No fue posible abrir Cargos.").showAndWait();
+        }
+    }
+
+    @FXML
     private void abrirProductos() {
         try {
             SceneManager.abrirVentana(

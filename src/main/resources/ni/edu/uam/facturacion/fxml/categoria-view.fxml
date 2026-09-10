@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ni.edu.uam.facturacion.controller.CategoriaController">
     <top>
-        <Label text="Categorias">
+        <GridPane hgap="10" vgap="10">
             <padding>
                 <Insets top="16" right="16" bottom="16" left="16"/>
             </padding>
-        </Label>
+            <columnConstraints>
+                <ColumnConstraints minWidth="90"/>
+                <ColumnConstraints prefWidth="320" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Nombre" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombre" promptText="Nombre de la categoría"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Activo" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="chkActivo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
     </top>
     <center>
-        <TableView prefHeight="400" prefWidth="700">
+        <TableView fx:id="tblCategorias" prefHeight="400" prefWidth="700">
             <columns>
-                <TableColumn text="ID" prefWidth="120"/>
-                <TableColumn text="Nombre" prefWidth="280"/>
-                <TableColumn text="Activo" prefWidth="300"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="120"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="360"/>
+                <TableColumn fx:id="colActivo" text="Activo" prefWidth="180"/>
             </columns>
         </TableView>
     </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="12" right="16" bottom="16" left="16"/>
+            </padding>
+            <Button fx:id="btnGuardar" text="Guardar" onAction="#guardar"/>
+            <Button fx:id="btnCerrar" text="Cerrar" onAction="#cerrar"/>
+        </HBox>
+    </bottom>
 </BorderPane>

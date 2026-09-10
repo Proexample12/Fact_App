@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -24,6 +26,8 @@
                     </Menu>
                     <Menu text="Catálogos">
                         <items>
+                            <MenuItem fx:id="mnuCategorias" text="Categorías" onAction="#abrirCategorias"/>
+                            <MenuItem fx:id="mnuCargos" text="Cargos" onAction="#abrirCargos"/>
                             <MenuItem fx:id="mnuProductos" text="Productos" onAction="#abrirProductos"/>
                         </items>
                     </Menu>
@@ -31,8 +35,42 @@
             </MenuBar>
             <ToolBar>
                 <items>
-                    <Button fx:id="btnProductos" text="Productos" onAction="#abrirProductos"/>
-                    <Button fx:id="btnSalir" text="Salir" onAction="#salir"/>
+                    <Button fx:id="btnCategorias" text="Categorías" onAction="#abrirCategorias">
+                        <graphic>
+                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                                <image>
+                                    <Image url="@../icons/agregar.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnCargos" text="Cargos" onAction="#abrirCargos">
+                        <graphic>
+                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                                <image>
+                                    <Image url="@../icons/agregar.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnProductos" text="Productos" onAction="#abrirProductos">
+                        <graphic>
+                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                                <image>
+                                    <Image url="@../icons/agregar.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnSalir" text="Salir" onAction="#salir">
+                        <graphic>
+                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                                <image>
+                                    <Image url="@../icons/cerrar.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
                 </items>
             </ToolBar>
         </VBox>
