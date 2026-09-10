@@ -11,16 +11,13 @@ public final class DatosApp {
             FXCollections.observableArrayList();
 
     public static final ObservableList<Categoria> categorias =
-            FXCollections.observableArrayList(
-                    new Categoria(1, "Alimentos", true),
-                    new Categoria(2, "Bebidas", true),
-                    new Categoria(3, "Limpieza", true));
+            FXCollections.observableArrayList();
 
     public static final ObservableList<Cargo> cargos =
             FXCollections.observableArrayList();
 
     private static int siguienteProductoId = 1;
-    private static int siguienteCategoriaId = 4;
+    private static int siguienteCategoriaId = 1;
     private static int siguienteCargoId = 1;
 
     private DatosApp() {
