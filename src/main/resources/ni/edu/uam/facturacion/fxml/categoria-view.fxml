@@ -48,6 +48,9 @@
                 <Insets top="12" right="16" bottom="16" left="16"/>
             </padding>
             <Button fx:id="btnGuardar" text="Guardar" onAction="#guardar"/>
+            <Button fx:id="btnActualizar" text="Actualizar" onAction="#actualizar"/>
+            <Button fx:id="btnEliminar" text="Eliminar" onAction="#eliminar"/>
+            <Button fx:id="btnLimpiar" text="Limpiar" onAction="#limpiar"/>
             <Button fx:id="btnCerrar" text="Cerrar" onAction="#cerrar"/>
         </HBox>
     </bottom>

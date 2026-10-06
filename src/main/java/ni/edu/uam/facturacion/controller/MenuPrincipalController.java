@@ -5,15 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import ni.edu.uam.facturacion.dao.CategoriaDAO;
+import ni.edu.uam.facturacion.dao.ProductoDAO;
 import ni.edu.uam.facturacion.util.DatosApp;
 import ni.edu.uam.facturacion.util.SceneManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MenuPrincipalController {
     @FXML private Label lblProductosRegistrados;
     @FXML private Label lblCategoriasRegistradas;
     @FXML private Label lblCargosRegistrados;
+
+    private final ProductoDAO productoDAO = new ProductoDAO();
+    private final CategoriaDAO categoriaDAO = new CategoriaDAO();
 
     @FXML
     private void initialize() {
@@ -69,8 +75,15 @@ public class MenuPrincipalController {
     }
 
     private void actualizarResumen() {
-        lblProductosRegistrados.setText(String.valueOf(DatosApp.productos.size()));
-        lblCategoriasRegistradas.setText(String.valueOf(DatosApp.categorias.size()));
         lblCargosRegistrados.setText(String.valueOf(DatosApp.cargos.size()));
+
+        try {
+            lblProductosRegistrados.setText(String.valueOf(productoDAO.contar()));
+            lblCategoriasRegistradas.setText(String.valueOf(categoriaDAO.contar()));
+        } catch (SQLException e) {
+            lblProductosRegistrados.setText("0");
+            lblCategoriasRegistradas.setText("0");
+            System.err.println(e.getMessage());
+        }
     }
 }

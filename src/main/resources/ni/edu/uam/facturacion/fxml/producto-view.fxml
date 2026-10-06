@@ -78,6 +78,9 @@
             </padding>
             <Button fx:id="btnImagen" text="Seleccionar imagen" onAction="#seleccionarImagen"/>
             <Button fx:id="btnGuardar" text="Guardar" onAction="#guardar"/>
+            <Button fx:id="btnActualizar" text="Actualizar" onAction="#actualizar"/>
+            <Button fx:id="btnEliminar" text="Eliminar" onAction="#eliminar"/>
+            <Button fx:id="btnLimpiar" text="Limpiar" onAction="#limpiar"/>
             <Button fx:id="btnCerrar" text="Cerrar" onAction="#cerrar"/>
         </HBox>
     </bottom>
